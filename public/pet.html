@@ -57,6 +57,18 @@
             max-width: 600px;
             max-height: 300px;
         }
+        footer {
+            background-color: #f1f1f1;
+            text-align: center;
+            padding: 10px 0;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+        .footer-text {
+            display: inline-block;
+            text-align: center;
+        }
     </style>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
@@ -175,5 +187,8 @@
                 console.error('Error fetching interaction data:', error);
             });
     </script>
+   <footer>
+    <div class="footer-text">&copy; 2024 4tekies LLC. All rights reserved.</div>
+   </footer>
 </body>
 </html>

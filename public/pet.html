@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pet Interaction Data</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        canvas {
+            max-width: 600px;
+            max-height: 300px;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <h1>Pet Interaction Data</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Timestamp</th>
+                <th>Head Movements</th>
+                <th>Tail Movements</th>
+                <th>Purring Sounds</th>
+            </tr>
+        </thead>
+        <tbody id="dataBody">
+            <!-- Data will be populated here by JavaScript -->
+        </tbody>
+    </table>
+
+    <canvas id="interactionChart"></canvas>
+
+    <script>
+        // Fetch data from the server
+        fetch('/interaction-data')
+            .then(response => response.json())
+            .then(data => {
+                const tableBody = document.getElementById('dataBody');
+                const timestamps = [];
+                const headData = [];
+                const tailData = [];
+                const purringData = [];
+
+                data.forEach(interaction => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>${interaction.timestamp}</td>
+                        <td>${interaction.head}</td>
+                        <td>${interaction.tail}</td>
+                        <td>${interaction.purring}</td>
+                    `;
+                    tableBody.appendChild(row);
+
+                    // Prepare data for the chart
+                    timestamps.push(interaction.timestamp);
+                    headData.push(interaction.head);
+                    tailData.push(interaction.tail);
+                    purringData.push(interaction.purring);
+                });
+
+                // Create the chart
+                const ctx = document.getElementById('interactionChart').getContext('2d');
+                const interactionChart = new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: timestamps,
+                        datasets: [
+                            {
+                                label: 'Head Movements',
+                                data: headData,
+                                borderColor: 'rgba(75, 192, 192, 1)',
+                                borderWidth: 1,
+                                fill: false
+                            },
+                            {
+                                label: 'Tail Movements',
+                                data: tailData,
+                                borderColor: 'rgba(153, 102, 255, 1)',
+                                borderWidth: 1,
+                                fill: false
+                            },
+                            {
+                                label: 'Purring Sounds',
+                                data: purringData,
+                                borderColor: 'rgba(255, 159, 64, 1)',
+                                borderWidth: 1,
+                                fill: false
+                            }
+                        ]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        scales: {
+                            x: {
+                                display: true,
+                                title: {
+                                    display: true,
+                                    text: 'Timestamp'
+                                }
+                            },
+                            y: {
+                                display: true,
+                                title: {
+                                    display: true,
+                                    text: 'Interaction Level'
+                                }
+                            }
+                        }
+                    }
+                });
+            })
+            .catch(error => {
+                console.error('Error fetching interaction data:', error);
+            });
+    </script>
+</body>
+</html>

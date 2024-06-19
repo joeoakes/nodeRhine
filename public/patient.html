@@ -3,41 +3,172 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Patient Information</title>
+    <title>Patient Interaction Data</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+        .header-left {
+            display: flex;
+            align-items: center;
+        }
+        .header-left img {
+            width: 50px;
+            height: 50px;
+            margin-right: 20px;
+        }
+        .header-left h1 {
+            margin: 0;
+        }
+        .header-right {
+            display: flex;
+            align-items: center;
+        }
+        .header-right span {
+            margin-right: 10px;
+            font-weight: bold;
+        }
+        .header-right button {
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        canvas {
+            max-width: 600px;
+            max-height: 300px;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-    <h1>Patient Information</h1>
-    <form id="patientForm">
-        <label for="patientId">Enter Patient ID:</label>
-        <input type="text" id="patientId" name="patientId" required>
-        <button type="submit">Get Information</button>
-    </form>
-    <div id="patientInfo"></div>
+    <div class="header">
+        <div class="header-left">
+            <img src="http://localhost:3000/images/logo.png" alt="Logo">
+            <h1>Patient Interaction Data</h1>
+        </div>
+        <div class="header-right">
+            <span>Nurse: Mary Johnson</span>
+            <button onclick="alert('Logged out')">Logout</button>
+        </div>
+    </div>
+    <table>
+        <thead>
+            <tr>
+                <th>Timestamp</th>
+                <th>Touch Interactions (Petting)</th>
+                <th>Vocal Level Interactions</th>
+                <th>Handle Pet Movement Interactions (Hugs)</th>
+            </tr>
+        </thead>
+        <tbody id="dataBody">
+            <!-- Data will be populated here by JavaScript -->
+        </tbody>
+    </table>
+
+    <canvas id="interactionChart" width="400" height="200"></canvas>
 
     <script>
-        document.getElementById('patientForm').addEventListener('submit', function(event) {
-            event.preventDefault();
-            const patientId = document.getElementById('patientId').value;
+        // Fetch data from the server
+        fetch('/interaction-data')
+            .then(response => response.json())
+            .then(data => {
+                const tableBody = document.getElementById('dataBody');
+                const timestamps = [];
+                const touchData = [];
+                const vocalData = [];
+                const handleMovementData = [];
 
-            fetch(`/patient/${patientId}`)
-                .then(response => response.json())
-                .then(data => {
-                    const infoDiv = document.getElementById('patientInfo');
-                    if (data.error) {
-                        infoDiv.innerHTML = `<p style="color: red;">${data.error}</p>`;
-                    } else {
-                        infoDiv.innerHTML = `
-                            <h2>Patient Details:</h2>
-                            <p><strong>Name:</strong> ${data.name}</p>
-                            <p><strong>Age:</strong> ${data.age}</p>
-                            <p><strong>Condition:</strong> ${data.condition}</p>
-                        `;
-                    }
-                })
-                .catch(error => {
-                    console.error('Error fetching patient information:', error);
+                data.forEach(interaction => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>${interaction.timestamp}</td>
+                        <td>${interaction.touch}</td>
+                        <td>${interaction.vocal}</td>
+                        <td>${interaction.handleMovement}</td>
+                    `;
+                    tableBody.appendChild(row);
+
+                    // Prepare data for the chart
+                    timestamps.push(interaction.timestamp);
+                    touchData.push(interaction.touch);
+                    vocalData.push(interaction.vocal);
+                    handleMovementData.push(interaction.handleMovement);
                 });
-        });
+
+                // Create the chart
+                const ctx = document.getElementById('interactionChart').getContext('2d');
+                const interactionChart = new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: timestamps,
+                        datasets: [
+                            {
+                                label: 'Touch Interactions (Petting)',
+                                data: touchData,
+                                borderColor: 'rgba(75, 192, 192, 1)',
+                                borderWidth: 1,
+                                fill: false
+                            },
+                            {
+                                label: 'Vocal Level Interactions',
+                                data: vocalData,
+                                borderColor: 'rgba(153, 102, 255, 1)',
+                                borderWidth: 1,
+                                fill: false
+                            },
+                            {
+                                label: 'Handle Pet Movement Interactions (Hugs)',
+                                data: handleMovementData,
+                                borderColor: 'rgba(255, 159, 64, 1)',
+                                borderWidth: 1,
+                                fill: false
+                            }
+                        ]
+                    },
+                    options: {
+                        responsive: true,
+                        scales: {
+                            x: {
+                                display: true,
+                                title: {
+                                    display: true,
+                                    text: 'Timestamp'
+                                }
+                            },
+                            y: {
+                                display: true,
+                                title: {
+                                    display: true,
+                                    text: 'Interaction Level'
+                                }
+                            }
+                        }
+                    }
+                });
+            })
+            .catch(error => {
+                console.error('Error fetching interaction data:', error);
+            });
     </script>
 </body>
 </html>

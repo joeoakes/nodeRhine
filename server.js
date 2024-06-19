@@ -57,6 +57,16 @@ const patientPetDetails = [
         petType: 'Rabbit',
         petStartDate: '2024-06-10',
         petEndDate: '2024-06-25'
+    },
+    {
+        patientId: '1004',
+        patientName: 'Johnny Johnson',
+        patientRoom: '104',
+        petId: 'P004',
+        petName: 'BooBoo',
+        petType: 'Bear',
+        petStartDate: '2024-06-10',
+        petEndDate: '2024-06-25'
     }
 ];
 

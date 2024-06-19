@@ -63,7 +63,7 @@
 <body>
     <div class="header">
         <div class="header-left">
-            <img src="images/logo.png" alt="Logo">
+            <img src="http://localhost:3000/images/logo.png" alt="Logo">
             <h1>Pet Interaction Data</h1>
         </div>
         <div class="header-right">
@@ -71,6 +71,7 @@
             <button onclick="alert('Logged out')">Logout</button>
         </div>
     </div>
+    <div class="pet-details" id="petDetails">
     <table>
         <thead>
             <tr>
@@ -88,6 +89,9 @@
     <canvas id="interactionChart"></canvas>
 
     <script>
+        // Get the pet ID from the URL
+        const petId = window.location.pathname.split('/').pop();
+
         // Fetch data from the server
         fetch('/interaction-data-pet')
             .then(response => response.json())

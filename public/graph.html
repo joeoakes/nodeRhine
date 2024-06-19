@@ -5,6 +5,41 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Patient Interaction Data</title>
     <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+        .header-left {
+            display: flex;
+            align-items: center;
+        }
+        .header-left img {
+            width: 50px;
+            height: 50px;
+            margin-right: 20px;
+        }
+        .header-left h1 {
+            margin: 0;
+        }
+        .header-right {
+            display: flex;
+            align-items: center;
+        }
+        .header-right span {
+            margin-right: 10px;
+            font-weight: bold;
+        }
+        .header-right button {
+            padding: 5px 10px;
+            cursor: pointer;
+        }
         table {
             width: 100%;
             border-collapse: collapse;
@@ -26,7 +61,16 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-    <h1>Patient Interaction Data</h1>
+    <div class="header">
+        <div class="header-left">
+            <img src="http://localhost:3000/images/logo.png" alt="Logo">
+            <h1>Patient Interaction Data</h1>
+        </div>
+        <div class="header-right">
+            <span>Nurse: Mary Johnson</span>
+            <button onclick="alert('Logged out')">Logout</button>
+        </div>
+    </div>
     <table>
         <thead>
             <tr>

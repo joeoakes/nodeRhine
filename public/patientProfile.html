@@ -93,7 +93,7 @@
                 data.forEach(detail => {
                     const row = document.createElement('tr');
                     row.innerHTML = `
-                        <td>${detail.patientName}</td>
+                        <td><a href="/patientName/${detail.patientName}">${detail.patientName}</a></td>
                         <td>${detail.patientRoom}</td>
                         <td><a href="/pet-details/${detail.petId}">${detail.petId}</a></td>
                         <td>${detail.petName}</td>

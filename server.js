@@ -31,20 +31,22 @@ const patientPetDetails = [
     {
         patientId: '1001',
         patientName: 'John Doe',
-        patientRoom: '101',
+        patientRoom: '101a',
         petId: 'P001',
         petName: 'Buddy',
         petType: 'Dog',
+        petTotalTime: '100',
         petStartDate: '2024-06-01',
         petEndDate: '2024-06-15'
     },
     {
         patientId: '1002',
-        patientName: 'Jane Smith',
-        patientRoom: '102',
+        patientName: 'John Smith',
+        patientRoom: '101b',
         petId: 'P002',
         petName: 'Mittens',
         petType: 'Cat',
+        petTotalTime: '150',
         petStartDate: '2024-06-05',
         petEndDate: '2024-06-20'
     },
@@ -55,6 +57,7 @@ const patientPetDetails = [
         petId: 'P003',
         petName: 'Charlie',
         petType: 'Rabbit',
+        petTotalTime: '300',
         petStartDate: '2024-06-10',
         petEndDate: '2024-06-25'
     },
@@ -65,6 +68,7 @@ const patientPetDetails = [
         petId: 'P004',
         petName: 'BooBoo',
         petType: 'Bear',
+        petTotalTime: '200',
         petStartDate: '2024-06-10',
         petEndDate: '2024-06-25'
     }

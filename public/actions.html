@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient Interaction Data</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <h1>Patient Interaction Data</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Timestamp</th>
+                <th>Touch Interactions (Petting)</th>
+                <th>Vocal Level Interactions</th>
+                <th>Handle Pet Movement Interactions (Hugs)</th>
+            </tr>
+        </thead>
+        <tbody id="dataBody">
+            <!-- Data will be populated here by JavaScript -->
+        </tbody>
+    </table>
+
+    <script>
+        // Fetch data from the server
+        fetch('/interaction-data')
+            .then(response => response.json())
+            .then(data => {
+                const tableBody = document.getElementById('dataBody');
+                data.forEach(interaction => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>${interaction.timestamp}</td>
+                        <td>${interaction.touch}</td>
+                        <td>${interaction.vocal}</td>
+                        <td>${interaction.handleMovement}</td>
+                    `;
+                    tableBody.appendChild(row);
+                });
+            })
+            .catch(error => {
+                console.error('Error fetching interaction data:', error);
+            });
+    </script>
+</body>
+</html>

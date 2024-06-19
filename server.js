@@ -29,6 +29,7 @@ const interactionDataPet = [
 
 const patientPetDetails = [
     {
+        patientId: '1001',
         patientName: 'John Doe',
         patientRoom: '101',
         petId: 'P001',
@@ -38,6 +39,7 @@ const patientPetDetails = [
         petEndDate: '2024-06-15'
     },
     {
+        patientId: '1002',
         patientName: 'Jane Smith',
         patientRoom: '102',
         petId: 'P002',
@@ -47,6 +49,7 @@ const patientPetDetails = [
         petEndDate: '2024-06-20'
     },
     {
+        patientId: '1003',
         patientName: 'Alice Johnson',
         patientRoom: '103',
         petId: 'P003',

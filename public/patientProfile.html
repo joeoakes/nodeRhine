@@ -69,6 +69,7 @@
     <table>
         <thead>
             <tr>
+                <th>Patient ID</th>
                 <th>Patient Name</th>
                 <th>Patient Room</th>
                 <th>Pet ID</th>
@@ -93,7 +94,8 @@
                 data.forEach(detail => {
                     const row = document.createElement('tr');
                     row.innerHTML = `
-                        <td><a href="/patientName/${detail.patientName}">${detail.patientName}</a></td>
+                        <td><a href="/patientName/${detail.patientId}">${detail.patientId}</a></td>
+                        <td>${detail.patientName}</td>
                         <td>${detail.patientRoom}</td>
                         <td><a href="/pet-details/${detail.petId}">${detail.petId}</a></td>
                         <td>${detail.petName}</td>

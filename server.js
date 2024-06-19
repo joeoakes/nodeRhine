@@ -81,6 +81,12 @@ app.get('/pet-details/:id', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'pet.html'));
 });
 
+// Route to serve patient details page (for demonstration purposes)
+app.get('/patientID/:id', (req, res) => {
+    //res.send(`<h1>Details for Pet ID: ${req.params.id}</h1>`);
+    res.sendFile(path.join(__dirname, 'public', 'patient.html'));
+});
+
 //app.use(express.static('public'));
 app.use(express.static(path.join(__dirname, 'public')));
 

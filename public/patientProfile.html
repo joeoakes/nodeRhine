@@ -94,7 +94,7 @@
                 data.forEach(detail => {
                     const row = document.createElement('tr');
                     row.innerHTML = `
-                        <td><a href="/patientName/${detail.patientId}">${detail.patientId}</a></td>
+                        <td><a href="/patientID/${detail.patientId}">${detail.patientId}</a></td>
                         <td>${detail.patientName}</td>
                         <td>${detail.patientRoom}</td>
                         <td><a href="/pet-details/${detail.petId}">${detail.petId}</a></td>

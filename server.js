@@ -1,4 +1,5 @@
 const express = require('express');
+const path = require('path');
 const app = express();
 const port = 3000;
 
@@ -9,7 +10,8 @@ const patients = {
     3: { name: 'Sam Brown', age: 50, condition: 'Hypertension' }
 };
 
-app.use(express.static('public'));
+//app.use(express.static('public'));
+app.use(express.static(path.join(__dirname, 'public')));
 
 // Route to get patient information by ID
 app.get('/patient/:id', (req, res) => {
@@ -22,6 +24,10 @@ app.get('/patient/:id', (req, res) => {
         res.json({ error: 'Patient not found' });
     }
 });
+
+app.get('/1', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', '1'));
+  });
 
 app.listen(port, () => {
     console.log(`Server running at http://localhost:${port}`);

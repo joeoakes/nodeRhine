@@ -72,6 +72,12 @@ app.get('/patient-pet-details', (req, res) => {
     res.json(patientPetDetails);
 });
 
+// Route to serve pet details page (for demonstration purposes)
+app.get('/pet-details/:id', (req, res) => {
+    //res.send(`<h1>Details for Pet ID: ${req.params.id}</h1>`);
+    res.sendFile(path.join(__dirname, 'public', 'pet.html'));
+});
+
 //app.use(express.static('public'));
 app.use(express.static(path.join(__dirname, 'public')));
 

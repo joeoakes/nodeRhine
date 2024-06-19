@@ -27,6 +27,36 @@ const interactionDataPet = [
     { timestamp: '2024-06-19 12:00:00', head: 9, tail: 6, purring: 7 }
 ];
 
+const patientPetDetails = [
+    {
+        patientName: 'John Doe',
+        patientRoom: '101',
+        petId: 'P001',
+        petName: 'Buddy',
+        petType: 'Dog',
+        petStartDate: '2024-06-01',
+        petEndDate: '2024-06-15'
+    },
+    {
+        patientName: 'Jane Smith',
+        patientRoom: '102',
+        petId: 'P002',
+        petName: 'Mittens',
+        petType: 'Cat',
+        petStartDate: '2024-06-05',
+        petEndDate: '2024-06-20'
+    },
+    {
+        patientName: 'Alice Johnson',
+        patientRoom: '103',
+        petId: 'P003',
+        petName: 'Charlie',
+        petType: 'Rabbit',
+        petStartDate: '2024-06-10',
+        petEndDate: '2024-06-25'
+    }
+];
+
 // Route to get interaction data
 app.get('/interaction-data', (req, res) => {
     res.json(interactionData);
@@ -35,6 +65,11 @@ app.get('/interaction-data', (req, res) => {
 // Route to get interaction data
 app.get('/interaction-data-pet', (req, res) => {
     res.json(interactionDataPet);
+});
+
+// Route to get patient and pet details
+app.get('/patient-pet-details', (req, res) => {
+    res.json(patientPetDetails);
 });
 
 //app.use(express.static('public'));

@@ -19,10 +19,23 @@ const interactionData = [
     { timestamp: '2024-06-19 12:00:00', touch: 9, vocal: 6, handleMovement: 7 }
 ];
 
+const interactionDataPet = [
+    { timestamp: '2024-06-19 10:00:00', head: 5, tail: 3, purring: 2 },
+    { timestamp: '2024-06-19 10:30:00', head: 7, tail: 4, purring: 3 },
+    { timestamp: '2024-06-19 11:00:00', head: 6, tail: 2, purring: 5 },
+    { timestamp: '2024-06-19 11:30:00', head: 8, tail: 5, purring: 4 },
+    { timestamp: '2024-06-19 12:00:00', head: 9, tail: 6, purring: 7 }
+];
+
 // Route to get interaction data
 app.get('/interaction-data', (req, res) => {
     res.json(interactionData);
 })
+
+// Route to get interaction data
+app.get('/interaction-data-pet', (req, res) => {
+    res.json(interactionDataPet);
+});
 
 //app.use(express.static('public'));
 app.use(express.static(path.join(__dirname, 'public')));

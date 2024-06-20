@@ -37,7 +37,8 @@ const patientPetDetails = [
         petType: 'Dog',
         petTotalTime: '100',
         petStartDate: '2024-06-01',
-        petEndDate: '2024-06-15'
+        petEndDate: '2024-06-15',
+        alert: 'offline'
     },
     {
         patientId: '1002',
@@ -48,7 +49,8 @@ const patientPetDetails = [
         petType: 'Cat',
         petTotalTime: '150',
         petStartDate: '2024-06-05',
-        petEndDate: '2024-06-20'
+        petEndDate: '2024-06-20',
+        alert: 'needs charging'
     },
     {
         patientId: '1003',
@@ -59,7 +61,8 @@ const patientPetDetails = [
         petType: 'Rabbit',
         petTotalTime: '300',
         petStartDate: '2024-06-10',
-        petEndDate: '2024-06-25'
+        petEndDate: '2024-06-25',
+        alert: 'online'
     },
     {
         patientId: '1004',
@@ -70,7 +73,8 @@ const patientPetDetails = [
         petType: 'Bear',
         petTotalTime: '200',
         petStartDate: '2024-06-10',
-        petEndDate: '2024-06-25'
+        petEndDate: '2024-06-25',
+        alert: 'low battery'
     }
 ];
 
